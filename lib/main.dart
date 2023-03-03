@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:meals/page/category_details_page.dart';
+
 import 'package:meals/page/categories_page.dart';
+import 'package:meals/page/meal_details_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -7,9 +10,10 @@ class MyApp extends StatelessWidget {
   MyApp({super.key});
 
   final myTheme = ThemeData(
+    primaryColor: Colors.pink,
     colorScheme: ColorScheme.fromSwatch(
       primarySwatch: Colors.pink,
-    ).copyWith(secondary: Colors.amber),
+    ).copyWith(primary: Colors.pink, secondary: Colors.amber),
     canvasColor: const Color.fromRGBO(255, 255, 220, 1),
     fontFamily: 'Raleway',
     textTheme: const TextTheme(
@@ -35,7 +39,15 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: myTheme,
       title: 'MyChef',
-      home: const CategoriesPage(),
+      //home: const CategoriesPage(),
+      initialRoute: '/', //default is '/'
+      onUnknownRoute: (RouteSettings setting) => MaterialPageRoute(
+          builder: (context) =>
+              const CategoriesPage()), //hata durumunda açılacak sayfa
+      routes: {
+        '/': (ctx) => const CategoriesPage(),
+        CategoryDetailsPage.route: (ctx) => const CategoryDetailsPage(),
+      },
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:meals/Widget/category_item.dart';
-import 'package:meals/dummy_data.dart';
+
+import '../dummy_data.dart';
+import '../widget/category_item.dart';
 
 class CategoriesPage extends StatelessWidget {
   const CategoriesPage({super.key});
@@ -21,7 +22,11 @@ class CategoriesPage extends StatelessWidget {
         ),
         children: DUMMY_CATEGORIES
             .map(
-              (e) => CategoryItem(title: e.title, color: e.color),
+              (e) => CategoryItem(
+                title: e.title,
+                color: e.color,
+                id: e.id,
+              ),
             )
             .toList(),
       ),
