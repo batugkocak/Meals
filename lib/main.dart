@@ -41,14 +41,26 @@ class MyApp extends StatelessWidget {
       title: 'MyChef',
       //home: const CategoriesPage(),
       initialRoute: '/', //default is '/'
-      onUnknownRoute: (RouteSettings setting) => MaterialPageRoute(
-          builder: (context) =>
-              const CategoriesPage()), //hata durumunda açılacak sayfa
+
       routes: {
         '/': (ctx) => const CategoriesPage(),
-        CategoryDetailsPage.route: (ctx) => const CategoryDetailsPage(),
-        MealDetailsPage.route: (context) => const MealDetailsPage(),
+        CategoryDetailsPage.route: (_) => const CategoryDetailsPage(),
+        MealDetailsPage.route: (_) => const MealDetailsPage(),
       },
+      onUnknownRoute: (_) => MaterialPageRoute(
+          builder: (context) =>
+              const CategoriesPage()), //page that will open if an error occurs when navigating the user
+      /* onGenerateRoute: (settings) {
+        print(settings);
+        print(settings.arguments);
+
+        if(settings.name == 'meal_details'){
+        return MaterialPageRoute(
+          builder: (context) => CategoriesPage(),
+        );
+        }
+
+      },*/ //page that will open if an null namedRoute occurs
     );
   }
 }

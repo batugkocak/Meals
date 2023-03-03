@@ -38,6 +38,10 @@ class MealItem extends StatelessWidget {
     }
   }
 
+  void selectMeal(BuildContext context) {
+    Navigator.of(context).pushNamed(MealDetailsPage.route, arguments: meal.id);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -48,8 +52,7 @@ class MealItem extends StatelessWidget {
       child: InkWell(
         borderRadius: const BorderRadius.all(Radius.circular(15)),
         onTap: () {
-          Navigator.of(context)
-              .pushNamed(MealDetailsPage.route, arguments: meal.id);
+          selectMeal(context);
         },
         child: Column(
           children: [
@@ -72,8 +75,8 @@ class MealItem extends StatelessWidget {
                   bottom: 10,
                   right: 15,
                   child: Container(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 5),
                       width: 160,
                       color: Colors.black54,
                       child: Text(
