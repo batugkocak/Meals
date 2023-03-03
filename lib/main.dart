@@ -47,6 +47,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/': (ctx) => const CategoriesPage(),
         CategoryDetailsPage.route: (ctx) => const CategoryDetailsPage(),
+        MealDetailsPage.route: (context) => const MealDetailsPage(),
       },
     );
   }
