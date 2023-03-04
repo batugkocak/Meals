@@ -13,6 +13,7 @@ class _TabsPageState extends State<TabsPage> {
   @override
   Widget build(BuildContext context) {
     //TabController right under the AppBar
+    //This could be done by StatelessWidget
     return DefaultTabController(
       length: 2,
       child: Scaffold(
