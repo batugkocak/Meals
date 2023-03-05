@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+
 import '../page/categories_page.dart';
 import '../page/favorites_page.dart';
+import '../widget/main_drawer.dart';
 
 class BottomTabsPage extends StatefulWidget {
   const BottomTabsPage({super.key});
@@ -10,9 +12,9 @@ class BottomTabsPage extends StatefulWidget {
 }
 
 class _BottomTabsPageState extends State<BottomTabsPage> {
-  List<Widget> _pages = const [
-    CategoriesPage(),
-    FavoritesPage(),
+  final List<Map<String, Object>> _pages = const [
+    {'page': CategoriesPage(), 'title': 'Categories'},
+    {'page': FavoritesPage(), 'title': 'Favorites'},
   ];
   int _selectedPageIndex = 0;
 
@@ -25,15 +27,17 @@ class _BottomTabsPageState extends State<BottomTabsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: _pages.elementAt(_selectedPageIndex),
+      body: _pages[_selectedPageIndex]['page'] as Widget,
       appBar: AppBar(
-        title: const Text('MyChef'),
+        title: Text(_pages[_selectedPageIndex]['title'] as String),
       ),
+      drawer: const MainDrawer(),
       bottomNavigationBar: BottomNavigationBar(
+        selectedIconTheme: const IconThemeData(size: 35),
         currentIndex: _selectedPageIndex,
         backgroundColor: Theme.of(context).primaryColor,
         unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.amber.shade100,
+        selectedItemColor: Colors.white,
         selectedFontSize: 16,
         items: const [
           BottomNavigationBarItem(
